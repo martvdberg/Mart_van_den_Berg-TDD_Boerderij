@@ -268,3 +268,34 @@ describe("getRevenueForCrop", () => {
     expect(getRevenueForCrop(input, environmentFactors)).toBe(75);
   });
 });
+
+describe("getProfitForCrop", () => {
+  test("Calculate profit with environment factors", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      price: 2,
+      salePrice: 3,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+      },
+    };
+
+    const environmentFactors = {
+      sun: "low",
+      rain: "medium",
+      wind: "low",
+    };
+
+    const input = {
+      crop: corn,
+      numCrops: 5,
+    };
+
+    expect(getProfitForCrop(input, environmentFactors)).toBe(12.5);
+  });
+});
