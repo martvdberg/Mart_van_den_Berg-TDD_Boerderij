@@ -133,3 +133,26 @@ describe("getTotalProfit", () => {
     expect(getTotalProfit({ crops })).toBe(69);
   });
 });
+
+// Test with environment factors
+describe("getYieldForPlant", () => {
+  const corn = {
+    name: "corn",
+    yield: 30,
+    factors: {
+      sun: {
+        low: -50,
+        medium: 0,
+        high: 50,
+      },
+    },
+  };
+
+  const environmentFactors = {
+    sun: "high",
+  };
+
+  test("Get yield for plant with environment factors", () => {
+    expect(getYieldForPlant(corn, environmentFactors)).toBe(45);
+  });
+});
