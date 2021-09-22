@@ -49,9 +49,9 @@ const getYieldForPlant = (plant, environment) => {
 const getYieldForCrop = (crop, environment) =>
   getYieldForPlant(crop, environment) * crop.numCrops;
 
-const getTotalYield = ({ crops }) =>
+const getTotalYield = ({ crops }, environmentFactors) =>
   crops.reduce((total, crop) => {
-    return total + getYieldForCrop(crop);
+    return total + getYieldForCrop(crop, environmentFactors);
   }, 0);
 
 const getCostsForCrop = (crop) => crop.numCrops * crop.crop.price;
