@@ -11,7 +11,13 @@ const getYieldForPlant = (plant) => {
 
 const getYieldForCrop = (crop) => getYieldForPlant(crop) * crop.numCrops;
 
+const getTotalYield = ({ crops }) =>
+  crops.reduce((total, crop) => {
+    return total + getYieldForCrop(crop);
+  }, 0);
+
 module.exports = {
   getYieldForPlant,
   getYieldForCrop,
+  getTotalYield,
 };
