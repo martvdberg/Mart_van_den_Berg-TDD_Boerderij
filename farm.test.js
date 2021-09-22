@@ -238,3 +238,33 @@ describe("getTotalYield", () => {
     expect(getTotalYield({ crops })).toBe(0);
   });
 });
+
+describe("getRevenueForCrop", () => {
+  test("Calculate revenue for crop with environment factors", () => {
+    const corn = {
+      name: "corn",
+      yield: 5,
+      salePrice: 3,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+      },
+    };
+
+    const environmentFactors = {
+      sun: "low",
+      rain: "medium",
+      wind: "low",
+    };
+
+    const input = {
+      crop: corn,
+      numCrops: 10,
+    };
+
+    expect(getRevenueForCrop(input, environmentFactors)).toBe(75);
+  });
+});
