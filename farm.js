@@ -1,7 +1,6 @@
 const getYieldForPlant = (plant, environment) => {
-  let plantObject = undefined;
-
   // make an simple object out of eevery input option
+  let plantObject = undefined;
   if (plant.hasOwnProperty("yield")) {
     plantObject = plant;
   } else if (plant.crop.hasOwnProperty("yield")) {
@@ -62,9 +61,9 @@ const getRevenueForCrop = (crop, environment) =>
 const getProfitForCrop = (crop, environment) =>
   getRevenueForCrop(crop, environment) - getCostsForCrop(crop);
 
-const getTotalProfit = ({ crops }) =>
+const getTotalProfit = ({ crops }, environment) =>
   crops.reduce((total, crop) => {
-    return total + getProfitForCrop(crop);
+    return total + getProfitForCrop(crop, environment);
   }, 0);
 
 module.exports = {
